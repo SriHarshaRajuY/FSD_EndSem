@@ -37,7 +37,8 @@ function renderProducts(productList = products) {
             const productId = button.dataset.id;
             const product = products.find(p => p.id === productId);
             if (product && product.inStock) {
-                const cartProduct = {
+                console.log('Adding to cart:', product); // Debug log
+                addToCart({
                     id: product.id,
                     name: product.name,
                     price: parseFloat(product.price), // Ensure price is a number
@@ -47,9 +48,7 @@ function renderProducts(productList = products) {
                     inStock: product.inStock,
                     quantity: 1,
                     category: product.category || 'Plants' // Use product.category or default to 'Plants'
-                };
-                console.log('Adding to cart:', cartProduct); // Debug log
-                addToCart(cartProduct);
+                });
             } else {
                 console.error('Product not found or out of stock:', productId);
             }
